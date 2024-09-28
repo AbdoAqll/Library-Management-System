@@ -13,37 +13,19 @@ namespace Library.DataAccess.RepositoryImplementation
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly ApplicationDbContext context;
-        private DbSet<T> dbSet;
+        protected DbSet<T> dbSet;
 
         public GenericRepository(ApplicationDbContext context)
         {
             this.context = context;
             dbSet = context.Set<T>();
         }
-        public void Add(T entity)
+        public async Task AddAsync(T entity)
         {
-            dbSet.Add(entity);
+            await dbSet.AddAsync(entity);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? IncludeWord = null)
-        {
-            IQueryable<T> query = dbSet;
-            if (predicate != null)
-            {
-                query = query.Where(predicate);
-            }
-            if (IncludeWord != null)
-            {
-                foreach (var item in IncludeWord.Split
-                    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(item);
-                }
-            }
-            return query.ToList();
-        }
-
-        public T GetFirstOrDefault(Expression<Func<T, bool>>? predicate = null, string? IncludeWord = null)
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, string? IncludeWord = null)
         {
             IQueryable<T> query = dbSet;
             if (predicate != null)
@@ -58,17 +40,41 @@ namespace Library.DataAccess.RepositoryImplementation
                     query = query.Include(item);
                 }
             }
-            return query.SingleOrDefault();
+            return await query.ToListAsync();
         }
 
-        public void Remove(T entity)
+        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>>? predicate = null, string? IncludeWord = null)
         {
-            dbSet.Remove(entity);
+            IQueryable<T> query = dbSet;
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+            if (IncludeWord != null)
+            {
+                foreach (var item in IncludeWord.Split
+                    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(item);
+                }
+            }
+            return (await query.FirstOrDefaultAsync())!;
         }
 
-        public void RemoveRange(IEnumerable<T> entities)
+        public async Task RemoveAsync(T entity)
+        {
+            var temp = await dbSet.FindAsync(entity);
+            if (temp != null)
+            {
+                dbSet.Remove(temp);
+            }
+            // we need to add a logger
+        }
+
+        public Task RemoveRangeAsync(IEnumerable<T> entities)
         {
             dbSet.RemoveRange(entities);
+            return Task.CompletedTask;
         }
     }
 }

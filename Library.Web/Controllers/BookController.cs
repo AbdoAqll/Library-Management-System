@@ -14,9 +14,9 @@ namespace Library.Web.Controllers
             this.webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var books = unitOfWork.BookRepository.GetAll();
+            var books = await unitOfWork.BookRepository.GetAllAsync();
             return View(books);
         }
 
@@ -28,12 +28,12 @@ namespace Library.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Book book, IFormFile file)
+        public async Task<IActionResult> Create(Book book, IFormFile file)
         {
             if(ModelState.IsValid)
             {
                 string rootPath = webHostEnvironment.WebRootPath;
-                if (file != null)
+                if (file != null) 
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(rootPath, @"images\Books");
@@ -44,8 +44,8 @@ namespace Library.Web.Controllers
                     }
                     book.ImageUrl = @"\images\Books\" + fileName + extension;
                 }
-                unitOfWork.BookRepository.Add(book);
-                unitOfWork.Complete();
+                await unitOfWork.BookRepository.AddAsync(book);
+                await unitOfWork.CompleteAsync();
                 TempData["Create"] = "Book created successfully";
                 return RedirectToAction("Index");
             }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Library.Entities.Repositories
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable, IAsyncDisposable
     {
-        int Complete();
+        Task<int> CompleteAsync();
         IBookRepository BookRepository { get; }
     }
 }

@@ -9,6 +9,6 @@ namespace Library.Entities.Repositories
 {
     public interface IBookRepository : IGenericRepository<Book>
     {
-        void Update(Book book);
+        Task UpdateAsync(Book book);
     }
 }

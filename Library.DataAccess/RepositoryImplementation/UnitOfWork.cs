@@ -20,14 +20,19 @@ namespace Library.DataAccess.RepositoryImplementation
 
         
 
-        public int Complete()
+        public async Task<int> CompleteAsync()
         {
-            return context.SaveChanges();
+            return await context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
             context.Dispose();
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await context.DisposeAsync();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library.DataAccess.RepositoryImplementation
 {
@@ -16,9 +17,11 @@ namespace Library.DataAccess.RepositoryImplementation
         {
             this.context = context;
         }
-        public void Update(Book book)
+        public Task UpdateAsync(Book book)
         {
-            context.Books.Update(book);
+            dbSet.Attach(book);
+            context.Entry(book).State = EntityState.Modified;
+            return Task.CompletedTask;
         }
     }
 }
