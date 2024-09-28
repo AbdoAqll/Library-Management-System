@@ -1,0 +1,50 @@
+<style >
+body {
+    display: flex;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0; /* Remove default margin */
+    background-color: #f8f9fa;
+}
+
+#sidebar {
+    background-color: #00183a; /* Updated color */
+    color: white;
+    height: 100%; /* Full height */
+    position: fixed; /* Fix to the left */
+    overflow-y: auto; /* Enable scrolling if necessary */
+    padding-top: 20px; /* Add some top padding */
+}
+
+    #sidebar a {
+        color: white;
+    }
+
+        #sidebar a:hover {
+            background-color: #00355b; /* Lightened shade for hover */
+            color: #ffffff;
+        }
+
+main {
+    margin-left: 250px; /* Space for the sidebar */
+    padding: 20px; /* Main content padding */
+}
+
+.logo-card {
+    background-color: #000f26; /* Darker shade for card */
+    border: none; /* Remove border */
+    border-radius: 20px; /* Rounded corners */
+    width: 200px; /* Set width of the card */
+    margin: 0 auto; /* Center the card */
+}
+
+    .logo-card .card-body {
+        display: flex; /* Enable flexbox for card body */
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically */
+        height: 150px; /* Fixed height for the card body */
+    }
+
+    .logo-card img {
+        max-width: 80%; /* Responsive logo size within the card */
+        height: auto; /* Maintain aspect ratio */
+    }

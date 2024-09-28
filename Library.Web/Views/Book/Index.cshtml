@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "Book List";
+    ViewData["Card Title"] = "Books List";
+}
+
+<div class="container mt-5">
+    <div class="mb-3">
+        <a class="btn btn-success" asp-controller="Book" asp-action="Create">Add New Book</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            No books available in the library at this time.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td>@book.Id</td>
+                        <td>@book.Title</td>
+                        <td>@book.Author</td>
+                        <td>@book.Genre</td>
+                        <td>@book.Stock</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" asp-controller="Books" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm" asp-controller="Books" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
