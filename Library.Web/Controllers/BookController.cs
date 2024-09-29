@@ -61,7 +61,7 @@ namespace Library.Web.Controllers
                     var extension = Path.GetExtension(file.FileName);
                     await using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
-                        file.CopyTo(fileStream);
+                        await file.CopyToAsync(fileStream);
                     }
                     book.ImageUrl = @"\images\Books\" + fileName + extension;
                 }
@@ -92,9 +92,9 @@ namespace Library.Web.Controllers
                     var uploads = Path.Combine(rootPath, @"images\Books");
                     var extension = Path.GetExtension(file.FileName);
                     var filePath = Path.Combine(uploads, fileName + extension);
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    await using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        file.CopyTo(fileStream);
+                        await file.CopyToAsync(fileStream);
                     }
                     book.ImageUrl = @"\images\Books\" + fileName + extension;
                     await unitOfWork.BookRepository.UpdateAsync(book);
