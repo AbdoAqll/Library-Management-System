@@ -5,67 +5,62 @@
     ViewData["Card Title"] = Model.Title + " Details";
 }
 
-<div class="container mt-5" style="border-radius: 30px;">
-    <div class="card mb-3" style="max-width: max-content;border-radius: 30px">
-        <div class="badge badge-info" style="position: absolute; top: 15px; right: 15px; color: white; font-weight: bold; border-radius: 30px; padding: 10px 20px; font-size: 1.5rem; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-            @Model.Stock <span style="font-size: 1.2rem;">in stock</span>
+<div class="container mt-5" style="border-radius: 30px;"/>
+<div class="card mb-3" style="max-width: max-content;border-radius: 30px">
+    <div class="badge badge-info" style="position: absolute; top: 15px; right: 15px; color: white; font-weight: bold; border-radius: 30px; padding: 10px 20px; font-size: 1.5rem; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        @Model.Stock
+        <span style="font-size: 1.2rem;">in stock</span>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" class="card-img" alt="@Model.Title" style="object-fit: cover; height: 100%;" />
+            }
         </div>
-     
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                @if (!string.IsNullOrEmpty(Model.ImageUrl))
-                {
-                    <img src="@Model.ImageUrl" class="card-img" alt="@Model.Title" style="object-fit: cover; height: 100%;" />
-                }
-            </div>
-            <div class="col-md-8">
-                <div class="card-body" style="max-height: fit-content; overflow: auto; font-size: 1.55rem;">
-                    <div style="margin: 50px 0;"></div>
-
-                    <div class="card-text" style="font-size: 1.4rem;">
-                        <p class="mb-2">
-                            <i class="fas fa-font" style="color: darkcyan;"></i> <strong>Title:</strong> @Model.Title
+        <div class="col-md-8">
+            <div class="card-body" style="max-height: fit-content; overflow: auto; font-size: 1.55rem;">
+                <div style="margin: 50px 0;"></div>
+                <div class="card-text" style="font-size: 1.4rem;">
+                    <p class="mb-2">
+                        <i class="fas fa-font" style="color: darkcyan;"></i>
+                        <strong>Title:</strong> @Model.Title
+                    </p>
+                    <hr style="border-color: #ccc;">
+                    <p class="mb-2">
+                        <i class="fas fa-user" style="color: darkcyan;"></i>
+                        <strong>Author:</strong> @Model.Author
+                    </p>
+                    <hr style="border-color: #ccc;">
+                    <p class="mb-2">
+                        <i class="fas fa-book" style="color: darkcyan;"></i>
+                        <strong>Genre:</strong> @Model.Genre
+                    </p>
+                    <hr style="border-color: #ccc;">
+                    <p class="mb-2">
+                        <i class="fas fa-building" style="color: darkcyan;"></i>
+                        <strong>Publisher:</strong> @Model.Publisher
+                    </p>
+                    <hr style="border-color: #ccc;">
+                    <p class="mb-2">
+                        <i class="fas fa-calendar-alt" style="color: darkcyan;"></i>
+                        <strong>Publish Date:</strong> @Model.PublishDate.ToShortDateString()
+                    </p>
+                    <hr style="visibility:hidden">
+                    <div class="card bg-light p-3 mt-3 shadow-sm" style="max-height:200px;overflow-y:scroll;">
+                        <p class="card-text" style="font-size: 1.4rem; line-height: 1.6">
+                            <strong>Description:</strong> @Model.Description
                         </p>
-                        <hr style="border-color: #ccc;">
-                        <p class="mb-2">
-                            <i class="fas fa-user" style="color: darkcyan;"></i> <strong>Author:</strong> @Model.Author
-                        </p>
-                        <hr style="border-color: #ccc;">
-                        <p class="mb-2">
-                            <i class="fas fa-book" style="color: darkcyan;"></i> <strong>Genre:</strong> @Model.Genre
-                        </p>
-                        <hr style="border-color: #ccc;">
-                        <p class="mb-2">
-                            <i class="fas fa-building" style="color: darkcyan;"></i> <strong>Publisher:</strong> @Model.Publisher
-                        </p>
-                        <hr style="border-color: #ccc;">
-                        <p class="mb-2">
-                            <i class="fas fa-calendar-alt" style="color: darkcyan;"></i> <strong>Publish Date:</strong> @Model.PublishDate.ToShortDateString()
-                        </p>
-                        <hr style="visibility:hidden">
-                       
-                        <div class="card bg-light p-3 mt-3 shadow-sm" style="max-height:200px;overflow-y:scroll;">
-                            <p class="card-text" style="font-size: 1.4rem; line-height: 1.6">
-                                <strong>Description:</strong> @Model.Description
-                        </p>
-                            
-
                     </div>
-                        <div style="margin: 80px 0;"></div>
-
-
-
-
+                    <div style="margin: 80px 0;"></div>
                 </div>
             </div>
         </div>
-            <div style="position: relative;">
-                <a href="@Url.Action("Index", "Book")" class="btn btn-info" style="position: absolute; bottom: 15px; right: 15px; border: none; color: white; padding: 12px 20px; font-size: 1.25rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; text-transform: uppercase;">
-                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back to Books
-                </a>
-            </div>
-
+        <div style="position: relative;">
+            <a href="@Url.Action("Index", "Book")" class="btn btn-info" style="position: absolute; bottom: 15px; right: 15px; border: none; color: white; padding: 12px 20px; font-size: 1.25rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; text-transform: uppercase;">
+                <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back to Books
+            </a>
+        </div>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
     </div>
 </div>

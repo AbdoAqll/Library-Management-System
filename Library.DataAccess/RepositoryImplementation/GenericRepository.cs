@@ -61,13 +61,11 @@ namespace Library.DataAccess.RepositoryImplementation
             return (await query.FirstOrDefaultAsync())!;
         }
 
-        public async Task RemoveAsync(T entity)
+        public Task RemoveAsync(T entity)
         {
-            var temp = await dbSet.FindAsync(entity);
-            if (temp != null)
-            {
-                dbSet.Remove(temp);
-            }
+
+            dbSet.Remove(entity);
+            return Task.CompletedTask;
             // we need to add a logger
         }
 
