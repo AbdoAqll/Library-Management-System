@@ -7,7 +7,7 @@
 
 <div class="container mt-5">
     <div class="mb-3">
-        <a class="btn btn-success" asp-controller="Book" asp-action="Create">AddAsync New Book</a>
+        <a class="btn btn-success" asp-area="Librarian" asp-controller="Book" asp-action="Create">AddAsync New Book</a>
     </div>
 
     @if (!Model.Any())
@@ -39,9 +39,9 @@
                         <td>@book.Genre</td>
                         <td>@book.Stock</td>
                         <td>
-                            <a class="btn btn-info btn-sm" asp-controller="Book" asp-action="Update" asp-route-id="@book.Id">Edit</a>
-                            <a class="btn btn-danger btn-sm" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
-                            <a class="btn btn-secondary btn-sm" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">Details</a>
+                            <a class="btn btn-info btn-sm" asp-area="Librarian" asp-controller="Book" asp-action="Update" asp-route-id="@book.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm" asp-area="Librarian" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
+                            <a class="btn btn-secondary btn-sm" asp-area="Librarian" asp-controller="Book" asp-action="Details" asp-route-id="@book.Id">Details</a>
                         </td>
                     </tr>
                 }

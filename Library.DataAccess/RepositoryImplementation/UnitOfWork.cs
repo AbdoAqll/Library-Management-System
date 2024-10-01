@@ -12,10 +12,14 @@ namespace Library.DataAccess.RepositoryImplementation
     {
         private readonly ApplicationDbContext context;
         public IBookRepository BookRepository { get; private set; }
+
+        public IApplicationUserRepository ApplicationUserRepository { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
             this.BookRepository = new BookRepository(context);
+            this.ApplicationUserRepository = new ApplicationUserRepository(context);
         }
 
         

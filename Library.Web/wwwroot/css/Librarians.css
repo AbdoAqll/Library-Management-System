@@ -1,4 +1,3 @@
-<style >
 body {
     display: flex;
     height: 100vh; /* Full height of the viewport */
@@ -23,6 +22,17 @@ body {
             background-color: #00355b; /* Lightened shade for hover */
             color: #ffffff;
         }
+    #sidebar button.nav-link {
+        background: none; /* Remove background */
+        color: white; /* Match link color */
+        text-align: left; /* Align text to the left */
+        padding: 10px 15px; /* Add padding similar to links */
+        border: none; /* Remove border */
+        width: 100%; /* Full width */
+    }
+    #sidebar button:hover {
+        background-color: #00355b; /* Lightened shade for hover */
+    }
 
 main {
     margin-left: 250px; /* Space for the sidebar */
@@ -48,3 +58,5 @@ main {
         max-width: 80%; /* Responsive logo size within the card */
         height: auto; /* Maintain aspect ratio */
     }
+
+

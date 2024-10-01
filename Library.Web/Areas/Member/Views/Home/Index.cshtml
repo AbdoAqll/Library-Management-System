@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "Book List";
+}
+
+<link href="~/css/MemberIndex.css" rel="stylesheet" />
+
+<div class="container">
+    <form method="get" asp-area="Member" asp-controller="Home" asp-action="Search" class="input-group my-3 search-bar">
+        <input type="text" name="searchString" class="form-control" placeholder="Search books..." aria-label="Search">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </form>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 book-card">
+                <div class="card">
+                    <img src="@book.ImageUrl" class="card-img-top" alt="@book.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="card-text"><span class="genre-label">Genre:</span> @book.Genre</p>
+                        <a asp-area="Member" asp-controller="Home" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info text-white mt-2">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

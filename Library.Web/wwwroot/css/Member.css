@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+.top-nav {
+    background-color: #00355b;
+    padding: 10px;
+    position: sticky; /* Make navbar sticky */
+    top: 0; /* Stick to the top */
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+    .top-nav .nav-link {
+        color: white;
+    }
+
+        .top-nav .nav-link:hover {
+            color: #ffcc00;
+        }
+
+.logo {
+    max-width: 50px; /* Adjusted logo size */
+    margin-right: 10px;
+}
+
+.search-bar {
+    margin-top: 10px; /* Space above the search bar */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Adjusted font size for smaller screens */
+    font-weight: bold;
+    color: #ffcc00; /* Gold color for visibility */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.25rem; /* Smaller font size for very small screens */
+    }
+}
+
+.book-card {
+    margin: 10px 0; /* Vertical margin for spacing */
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"%3E%3Cpath stroke="white" stroke-width="2" d="M5 7h20M5 15h20M5 23h20"/%3E%3C/svg%3E'); /* Change icon color to white */
+}

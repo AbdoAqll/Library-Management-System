@@ -1,11 +1,14 @@
 using Library.Entities.Models;
 using Library.Entities.ViewModels;
-
+using Library_Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Library.Web.Controllers
+namespace Library.Web.Areas.Librarian.Controllers
 {
+    [Area(StaticData.LibrarianRole)]
+    [Authorize(Roles = StaticData.LibrarianRole)]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

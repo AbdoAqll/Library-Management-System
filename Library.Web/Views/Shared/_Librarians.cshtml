@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,59 +22,71 @@
             <h5 class="sidebar-title text-center">Librarians Dashboard</h5>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link active" asp-area="Librarian" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index">
+                    <a class="nav-link" asp-area="Librarian" asp-controller="Book" asp-action="Index">
                         <i class="fas fa-book"></i>
                         Books
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link" asp-area="Librarian" asp-controller="Users" asp-action="Index">
                         <i class="fas fa-users"></i>
                         Members
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link" asp-area="Librarian" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-file-alt"></i>
                         Checkouts
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link" asp-area="Librarian" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-undo"></i>
                         Returns
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link" asp-area="Librarian" asp-controller="Home" asp-action="Index">
                         <i class="fas fa-exclamation-triangle"></i>
                         Penalties
                     </a>
                 </li>
+
                 <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-sign-in-alt"></i>
-                    Login
-                </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                        <i class="fas fa-user-plus"></i>
-                        Register
+                    <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="Index">
+                        <i class="fas fa-user"></i>
+                        Customer View
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Logout
-                    </a>
-                </li>
+
+                
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                    
+                    <li class="nav-item">
+                        <form asp-area="Identity" asp-page="/Account/Logout" method="post" class="m-0">
+                            <button type="submit" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link" style="color:gold">
+                            <i class="fas fa-user-circle"></i> <!-- Optional user icon -->
+                            Hello, <strong>@user.Name</strong>
+                        </span>
+                    </li>
+                }
+
+                
             </ul>
         </div>
     </nav>

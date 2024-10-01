@@ -1,0 +1,42 @@
+.book-card {
+    margin-bottom: 20px; /* Space between cards */
+}
+
+.card {
+    border: none; /* Remove border for a cleaner look */
+    transition: transform 0.2s; /* Add hover effect */
+    border-radius: 15px; /* Rounded corners */
+}
+
+    .card:hover {
+        transform: scale(1.05); /* Slightly enlarge the card on hover */
+    }
+
+.card-img-top {
+    width: 100%; /* Full width */
+    height: 300px; /* Fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover */
+    border-radius: 15px 15px 0 0; /* Rounded top corners */
+}
+
+.card-body {
+    text-align: center; /* Center align text */
+    background-color: #343a40; /* Dark background for card body */
+    color: white; /* White text for contrast */
+    padding: 15px; /* Padding for better spacing */
+}
+
+.card-title {
+    font-size: 1.25rem; /* Adjust font size */
+    margin-bottom: 5px; /* Space below title */
+}
+
+.card-text {
+    color: #f8f9fa; /* Light text color for genre */
+    margin: 0; /* Remove default margin */
+    font-size: 1rem; /* Adjust font size */
+}
+
+.genre-label {
+    font-weight: bold; /* Bold genre label */
+}

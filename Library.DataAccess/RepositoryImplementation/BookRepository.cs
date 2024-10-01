@@ -17,6 +17,24 @@ namespace Library.DataAccess.RepositoryImplementation
         {
             this.context = context;
         }
+
+        public async Task<IEnumerable<Book>> SearchBooksAsync(string searchString)
+        {
+            if (string.IsNullOrWhiteSpace(searchString))
+            {
+                return await context.Books.ToListAsync(); // return all books if no search string is provided
+            }
+
+            searchString = searchString.ToLower(); // Convert search string to lowercase
+
+            return await context.Books
+                .Where(x => x.Title.ToLower().Contains(searchString) ||
+                             x.Genre.ToLower().Contains(searchString) ||
+                             x.Description.ToLower().Contains(searchString))
+                .ToListAsync();
+        }
+
+
         public Task UpdateAsync(Book book)
         {
             dbSet.Attach(book);

@@ -10,5 +10,7 @@ namespace Library.Entities.Repositories
     public interface IBookRepository : IGenericRepository<Book>
     {
         Task UpdateAsync(Book book);
+
+        public Task<IEnumerable<Book>> SearchBooksAsync(string searchString);
     }
 }
