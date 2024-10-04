@@ -51,7 +51,12 @@ namespace Library.Web.Areas.Member.Controllers
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
                 var userId = claim.Value;
 
-                var checkRepeatedBooks = await unitOfWork.CheckoutRepository.GetFirstOrDefaultAsync(x => x.BookId == id && x.ApplicationUserId == userId &&(x.Status != StaticData.DisaprrovedByAdmin && x.Status != StaticData.ApprovedByAdmin));
+
+                // User can only borrow a book again in case it is returned or the request of the book was disaproved by a librarian.
+                var checkRepeatedBooks = await unitOfWork.CheckoutRepository.
+                    GetFirstOrDefaultAsync(x => x.BookId == id && x.ApplicationUserId == userId &&
+                    (x.Status == StaticData.DisaprrovedByAdmin || x.Status == StaticData.Returned));
+
                 if(checkRepeatedBooks != null)
                 {
                     TempData["Delete"] = "You already have this book in your borrowing list";
