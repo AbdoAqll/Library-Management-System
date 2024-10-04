@@ -38,7 +38,7 @@ namespace Library.Web.Areas.Member.Controllers
             checkout.Status = StaticData.ConfirmedByUser;
 
             await unitOfWork.CompleteAsync();
-            //TempData["Success"] = "Done!";
+            TempData["Update"] = "Done!";
 
             return RedirectToAction("Index");
         } 
@@ -50,6 +50,13 @@ namespace Library.Web.Areas.Member.Controllers
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
                 var userId = claim.Value;
+
+                var checkRepeatedBooks = await unitOfWork.CheckoutRepository.GetFirstOrDefaultAsync(x => x.BookId == id && x.ApplicationUserId == userId &&(x.Status != StaticData.DisaprrovedByAdmin && x.Status != StaticData.ApprovedByAdmin));
+                if(checkRepeatedBooks != null)
+                {
+                    TempData["Delete"] = "You already have this book in your borrowing list";
+                    return RedirectToAction("Index", "Home", new { area = StaticData.MemberRole });
+                }
 
                 var checkout = new Checkout() {
                     BookId = book.Id,
@@ -64,7 +71,7 @@ namespace Library.Web.Areas.Member.Controllers
 
 
             }
-            //TempData["Create"] = "Book is sent to your borrowing list succesfully";
+            TempData["Create"] = "Book is sent to your borrowing list succesfully";
 
             return RedirectToAction("Index", "Home", new { area = StaticData.MemberRole });
         } 
@@ -75,7 +82,7 @@ namespace Library.Web.Areas.Member.Controllers
             var toBeDeletedCheckout = await unitOfWork.CheckoutRepository.GetFirstOrDefaultAsync(x=> x.Id == id);
             await unitOfWork.CheckoutRepository.RemoveAsync(toBeDeletedCheckout);
             await unitOfWork.CompleteAsync();
-
+            TempData["Delete"] = "Book is removed from your borrowing list succesfully";
             return RedirectToAction("Index");
         }
 

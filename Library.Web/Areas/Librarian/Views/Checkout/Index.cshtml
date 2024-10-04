@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Checkout>
 
 @{
-    ViewData["Title"] = "Borrowing List";
-    ViewData["Card Title"] = "Borrowing List";
+    ViewData["Title"] = "Checkout Requests";
+    ViewData["Card Title"] = "Checkout Requests";
 }
 
 <div class="container mt-5 text-center">
@@ -10,14 +10,14 @@
     @if (!Model.Any())
     {
         <div class="alert alert-warning" role="alert">
-            <strong>Empty Borrowing List</strong>
+            <strong>No Checkouts Requests</strong>
         </div>
     }
     else
     {
         <div class="text-center mb-4">
             <div class="p-3 bg-light border rounded shadow-sm">
-                <h2 class="mb-1 fs-7 fw-bold text-black-50">Borrowing List</h2> <!-- Changed text color to white -->
+                <h2 class="mb-1 fs-7 fw-bold text-black-50"> Checkout Requests </h2>
             </div>
         </div>
         <table class="table table-bordered table-hover w-100 mx-auto">

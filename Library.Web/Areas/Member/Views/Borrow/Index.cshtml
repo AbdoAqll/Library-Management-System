@@ -41,7 +41,7 @@
                         <td>@c.Book.Title</td>
                         <td>
                             <a class="btn btn-success btn-sm me-2" asp-area="Member" asp-controller="Borrow" asp-action="Confirm" asp-route-id="@c.Id">Confirm</a>
-                            <a class="btn btn-secondary btn-sm" asp-area="Member" asp-controller="Book" asp-action="Details" asp-route-id="@c.Book.Id">Details</a>
+                            <a class="btn btn-secondary btn-sm" asp-area="Member" asp-controller="Home" asp-action="Details" asp-route-id="@c.Book.Id">Details</a>
                             <a class="btn btn-danger btn-sm me-2" asp-area="Member" asp-controller="Borrow" asp-action="Delete" asp-route-id="@c.Id">Delete</a>
                         </td>
                     </tr>

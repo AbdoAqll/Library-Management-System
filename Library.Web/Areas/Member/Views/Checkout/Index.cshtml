@@ -10,7 +10,7 @@
     @if (!Model.Any())
     {
         <div class="alert alert-warning" role="alert">
-            <strong>Empty Borrowing List</strong>
+            <strong>No checkouts Available</strong>
         </div>
     }
     else
@@ -44,8 +44,6 @@
                         <td>@c.DueDate</td>
                         <td>@c.CheckoutDate</td>
                         <td>@c.Status</td>
-
-
                     </tr>
                     counter++;
                 }

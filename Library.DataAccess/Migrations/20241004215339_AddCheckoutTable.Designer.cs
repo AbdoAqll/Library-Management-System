@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241004143215_AddCheckouts")]
-    partial class AddCheckouts
+    [Migration("20241004215339_AddCheckoutTable")]
+    partial class AddCheckoutTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

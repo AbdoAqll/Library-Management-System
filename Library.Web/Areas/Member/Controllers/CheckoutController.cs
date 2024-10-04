@@ -22,7 +22,7 @@ namespace Library.Web.Areas.Member.Controllers
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             var userId = claim.Value;
 
-            var checkouts = await unitOfWork.CheckoutRepository.GetAllAsync(x => x.ApplicationUserId == userId, "Book");
+            var checkouts = await unitOfWork.CheckoutRepository.GetAllAsync(x => x.ApplicationUserId == userId && x.Status != StaticData.InCart, "Book");
             return View(checkouts);
         }
 

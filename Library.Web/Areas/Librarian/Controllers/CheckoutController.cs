@@ -37,8 +37,8 @@ namespace Library.Web.Areas.Librarian.Controllers
             }
 
             checkout.Status = StaticData.ApprovedByAdmin;
-            checkout.DueDate = DateTime.Now;
-            checkout.CheckoutDate = DateTime.Now.AddDays(StaticData.ReturnDays);
+            checkout.DueDate = DateTime.Now.AddDays(StaticData.ReturnDays);
+            checkout.CheckoutDate = DateTime.Now;
 
             book.Stock -= 1; 
             
