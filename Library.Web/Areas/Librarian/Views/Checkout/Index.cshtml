@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Checkout>
+
+@{
+    ViewData["Title"] = "Borrowing List";
+    ViewData["Card Title"] = "Borrowing List";
+}
+
+<div class="container mt-5 text-center">
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            <strong>Empty Borrowing List</strong>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mb-4">
+            <div class="p-3 bg-light border rounded shadow-sm">
+                <h2 class="mb-1 fs-7 fw-bold text-black-50">Borrowing List</h2> <!-- Changed text color to white -->
+            </div>
+        </div>
+        <table class="table table-bordered table-hover w-100 mx-auto">
+
+            <thead class="table-light">
+                <tr>
+                    <th>NO.</th>
+                    <th>Title</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int counter = 1;
+                }
+
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@c.Book.Title</td>
+                        <td>@c.Book.Stock</td>
+                        <td>
+                            <a class="btn btn-success btn-sm me-2" asp-area="Librarian" asp-controller="Checkout" asp-action="Approve" asp-route-id="@c.Id">Approve</a>
+                            <a class="btn btn-danger btn-sm me-2" asp-area="Librarian" asp-controller="Checkout" asp-action="Disapprove" asp-route-id="@c.Id">Disapprove</a>
+                        </td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

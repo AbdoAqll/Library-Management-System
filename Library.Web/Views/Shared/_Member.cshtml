@@ -71,7 +71,9 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="librarianDropdown">
                                     <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage">Manage Account</a></li>
-                                    <li><a class="dropdown-item" asp-area="Member" asp-controller="Home" asp-action="ViewCheckouts">ViewCheckouts</a></li>
+                                    @* <li><a class="dropdown-item" asp-area="Member" asp-controller="Home" asp-action="ViewCheckouts">View Checkouts</a></li> *@
+                                    <li><a class="dropdown-item" asp-area="Member" asp-controller="Borrow" asp-action="Index">Borrowning List</a></li>
+                                    <li><a class="dropdown-item" asp-area="Member" asp-controller="Checkout" asp-action="Index">Checkouts</a></li>
                                 </ul>
                             </li>
                         }

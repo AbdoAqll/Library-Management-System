@@ -17,6 +17,7 @@
     <div class="row">
         @foreach (var book in Model)
         {
+            @if(book.Stock == 0){ continue; }
             <div class="col-lg-3 col-md-4 col-sm-6 book-card">
                 <div class="card">
                     <img src="@book.ImageUrl" class="card-img-top" alt="@book.Title">
@@ -24,6 +25,7 @@
                         <h5 class="card-title">@book.Title</h5>
                         <p class="card-text"><span class="genre-label">Genre:</span> @book.Genre</p>
                         <a asp-area="Member" asp-controller="Home" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info text-white mt-2">Details</a>
+                        <a asp-area="Member" asp-controller="Borrow" asp-action="Borrow" asp-route-id="@book.Id" class="btn btn-info text-white mt-2">Borrow</a>
                     </div>
                 </div>
             </div>

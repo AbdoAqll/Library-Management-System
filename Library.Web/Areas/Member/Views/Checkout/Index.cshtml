@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Checkout>
+
+@{
+    ViewData["Title"] = "Checkouts List";
+    ViewData["Card Title"] = "Checkouts List";
+}
+
+<div class="container mt-5 text-center">
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            <strong>Empty Borrowing List</strong>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mb-4">
+            <div class="p-3 bg-light border rounded shadow-sm">
+                <h2 class="mb-1 fs-7 fw-bold text-black-50">Checkouts</h2> <!-- Changed text color to white -->
+            </div>
+        </div>
+        <table class="table table-bordered table-hover w-100 mx-auto">
+
+            <thead class="table-light">
+                <tr>
+                    <th>NO.</th>
+                    <th>Title</th>
+                    <th>Due date</th>
+                    <th>Checkout date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int counter = 1;
+                }
+
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@c.Book.Title</td>
+                        <td>@c.DueDate</td>
+                        <td>@c.CheckoutDate</td>
+                        <td>@c.Status</td>
+
+
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    }
+    <div style="margin: 110px 0;"></div>
+    <div style="position: relative;">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-info" style="position: absolute; bottom: 15px; right: 1px; border: none; color: white; padding: 12px 20px; font-size: 1.25rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; text-transform: uppercase;">
+            <i class="fas fa-arrow-left"></i> Back to Books
+        </a>
+    </div>
+</div>

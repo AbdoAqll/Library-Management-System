@@ -10,5 +10,12 @@ namespace Library_Utilities
     {
         public const string LibrarianRole = "Librarian";
         public const string MemberRole = "Member";
+        public const int ReturnDays = 14;
+        public const string ConfirmedByUser = "Waiting for a librarian approval";
+        public const string InCart = "InCart";
+        public const string ApprovedByAdmin = "Borrowing request approved";
+        public const string DisaprrovedByAdmin = "Borrowing request disapproved";
+
+
     }
 }

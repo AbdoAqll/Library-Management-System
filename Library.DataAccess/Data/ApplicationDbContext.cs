@@ -17,5 +17,6 @@ namespace Library.DataAccess.Data
         }
         public DbSet<Book> Books { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Checkout> Checkouts { get; set; }
     }
 }

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Library,Utilities\Library.Utilities.csproj" />
     <ProjectReference Include="..\Library.Entities\Library.Entities.csproj" />
   </ItemGroup>
 

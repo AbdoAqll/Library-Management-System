@@ -11,5 +11,6 @@ namespace Library.Entities.Repositories
         Task<int> CompleteAsync();
         IBookRepository BookRepository { get; }
         IApplicationUserRepository ApplicationUserRepository { get; }
+        ICheckoutRepository CheckoutRepository { get; }
     }
 }
