@@ -21,7 +21,7 @@ namespace Library.Web.Areas.Librarian.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var confirmedByUserCheckouts = await unitOfWork.CheckoutRepository.GetAllAsync(c => c.Status == StaticData.ConfirmedByUser, "Book");
+            var confirmedByUserCheckouts = await unitOfWork.CheckoutRepository.GetAllAsync(c => c.Status == StaticData.ConfirmedByUser,"Book");
             return View(confirmedByUserCheckouts);
         }
         [HttpGet]
@@ -30,6 +30,12 @@ namespace Library.Web.Areas.Librarian.Controllers
             var checkout = await unitOfWork.CheckoutRepository.GetFirstOrDefaultAsync(x => x.Id == id);
             var book = await unitOfWork.BookRepository.GetFirstOrDefaultAsync(x => x.Id == checkout.BookId);
             
+            if (book.Stock == 0)
+            {
+                TempData["Delete"] = "Checkout Can't be made due empty stock";
+                return RedirectToAction("Index");
+            }
+
             checkout.Status = StaticData.ApprovedByAdmin;
             checkout.DueDate = DateTime.Now;
             checkout.CheckoutDate = DateTime.Now.AddDays(StaticData.ReturnDays);
