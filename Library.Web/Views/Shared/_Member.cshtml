@@ -13,10 +13,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="top-nav navbar navbar-expand-lg">
+    <nav class="top-nav navbar navbar-expand-lg" style="border-bottom-left-radius: 40px; border-bottom-right-radius:40px; height:80px;background-color:rgb(18, 153, 181);box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3)">
         <div class="container-fluid">
-            <img src="~/images/LibraryLogo.jpg" alt="Library Logo" class="logo" />
-            <a class="navbar-brand" href="#">Library Management System</a>
+            <img src="~/images/LibraryLogo.png" alt="Library Logo" class="logo" />
+            <a class="navbar-brand" href="#" style="color : floralwhite">Library Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -43,7 +43,7 @@
                     @if(User.Identity.IsAuthenticated){
                         var user = await UserManager.FindByNameAsync(User.Identity.Name);
                         <li class="nav-item">
-                            <span class="nav-link" style="color:gold">Hello, @user.Name</span>
+                            <span class="nav-link" style="color:gold">Hello, @user.Name.Split(' ')[0]</span>
                         </li>
                         <li class="nav-item">
                             <form asp-area="Identity" asp-page="/Account/Logout" method="post" class="d-inline">
@@ -54,10 +54,10 @@
                         @if (User.IsInRole(StaticData.LibrarianRole)) // Check if the user is in the Librarian role
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="librarianDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Librarian Options
+                                <a class="nav-link dropdown-toggle" href="#" id="librarianDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                    Options
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="librarianDropdown">
+                                <ul class="dropdown-menu" aria-labelledby="librarianDropdown" style="margin: 0 0 0 -70px;">
                                     <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage">Manage Account</a></li>
                                     <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Register">Create Admin</a></li>
                                     <li><a class="dropdown-item" asp-area="Librarian" asp-controller="Home" asp-action="Index">Dashboard</a></li>
@@ -68,9 +68,9 @@
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="librarianDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Customer Options
+                                    Options
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="librarianDropdown">
+                                <ul class="dropdown-menu" aria-labelledby="librarianDropdown" style="margin: 0 0 0 -70px;">
                                     <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage">Manage Account</a></li>
                                     @* <li><a class="dropdown-item" asp-area="Member" asp-controller="Home" asp-action="ViewCheckouts">View Checkouts</a></li> *@
                                     <li><a class="dropdown-item" asp-area="Member" asp-controller="Borrow" asp-action="Index">Borrowning List</a></li>
