@@ -1,34 +1,41 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-    ViewData["Card Title"] = "Home Page";
+    // ViewData["Title"] = "Home Page";
+    // ViewData["Card Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the Library Management System</h1>
+    <p class="lead">Your all-in-one solution for managing library operations!</p>
 </div>
 
 <div class="container mt-5">
-    <h2>Quick Access</h2>
+    <h2 class="text-primary">Quick Access</h2>
     <div class="row">
+
         <div class="col-md-4 d-flex">
-            <div class="card flex-fill text-center">
+            <div class="card flex-fill text-center shadow-lg">
                 <div class="card-body">
+                    <i class="fas fa-book fa-3x mb-3 text-primary"></i>
                     <h5 class="card-title">Manage Books</h5>
                     <p class="card-text">Easily add new books, edit existing entries, or delete books that are no longer in circulation. Keep your catalog up to date for all users.</p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 d-flex">
-            <div class="card flex-fill text-center">
+            <div class="card flex-fill text-center shadow-lg">
                 <div class="card-body">
+                    <i class="fas fa-user fa-3x mb-3 text-primary"></i>
                     <h5 class="card-title">Manage Members</h5>
-                    <p class="card-text">View and manage library members' profiles. AddAsync new members, update their information, or remove inactive accounts to maintain an organized membership.</p>
+                    <p class="card-text">View and manage library members' profiles. Add new members, update their information, or remove inactive accounts to maintain an organized membership.</p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 d-flex">
-            <div class="card flex-fill text-center">
+            <div class="card flex-fill text-center shadow-lg">
                 <div class="card-body">
+                    <i class="fas fa-sign-out-alt fa-3x mb-3 text-primary"></i>
                     <h5 class="card-title">Checkouts</h5>
                     <p class="card-text">Oversee the checkout process for books. Manage current loans and track due dates to ensure timely returns and maintain inventory.</p>
                 </div>
@@ -38,16 +45,19 @@
 
     <div class="row mt-4">
         <div class="col-md-4 d-flex">
-            <div class="card flex-fill text-center">
+            <div class="card flex-fill text-center shadow-lg">
                 <div class="card-body">
+                    <i class="fas fa-exclamation-triangle fa-3x mb-3 text-warning"></i>
                     <h5 class="card-title">Penalties</h5>
                     <p class="card-text">Manage overdue fines and penalties for late returns. Ensure that all members are aware of their responsibilities and any associated fees.</p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 d-flex">
-            <div class="card flex-fill text-center">
+            <div class="card flex-fill text-center shadow-lg">
                 <div class="card-body">
+                    <i class="fas fa-undo fa-3x mb-3 text-success"></i>
                     <h5 class="card-title">Returns</h5>
                     <p class="card-text">Facilitate the return process for borrowed books. Ensure accurate logging of returned items and update inventory to reflect current availability.</p>
                 </div>
@@ -55,3 +65,5 @@
         </div>
     </div>
 </div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

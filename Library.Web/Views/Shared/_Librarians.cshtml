@@ -12,14 +12,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
-    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+    <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar" style="background-color:rgb(18, 153, 181);box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3)">
         <div class="position-sticky">
-            <div class="card mb-3 logo-card">
-                <div class="card-body">
+            <div class="card mb-3 logo-card" style="background-color:transparent">
+                 <div class="card-body" style="background-color:transparent">
                     <img src="~/images/LibraryLogo.png" alt="Library Logo" />
                 </div>
             </div>
-            <h5 class="sidebar-title text-center">Librarians Dashboard</h5>
+            <hr style="border: none; height: 5px; background-color: white; margin-top: 10px; width: 100%;" />
+
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link active" asp-area="Librarian" asp-controller="Home" asp-action="Index">
@@ -81,7 +82,7 @@
                     <li class="nav-item">
                         <span class="nav-link" style="color:gold">
                             <i class="fas fa-user-circle"></i> <!-- Optional user icon -->
-                            Hello, <strong>@user.Name</strong>
+                            Hello, <strong>@user.Name.Split(' ')[0]</strong>
                         </span>
                     </li>
                 }
