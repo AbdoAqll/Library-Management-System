@@ -20,6 +20,7 @@ namespace Library.DataAccess.RepositoryImplementation
             this.context = context;
             dbSet = context.Set<T>();
         }
+
         public async Task AddAsync(T entity)
         {
             await dbSet.AddAsync(entity);
@@ -63,7 +64,6 @@ namespace Library.DataAccess.RepositoryImplementation
 
         public Task RemoveAsync(T entity)
         {
-
             dbSet.Remove(entity);
             return Task.CompletedTask;
             // we need to add a logger

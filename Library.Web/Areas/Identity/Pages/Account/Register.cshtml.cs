@@ -12,7 +12,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Library.Entities.Models;
 using Library_Utilities;
+
 using Library_Utilities;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -80,10 +82,11 @@ namespace Library.Web.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            /// 
+            ///
 
             [Required]
             public string Name { get; set; }
+
             public string City { get; set; }
             public string Address { get; set; }
 
@@ -111,13 +114,11 @@ namespace Library.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-
             [Required]
             [Phone]
             [Display(Name = "Phone Number")]
             public string PhoneNumber { get; set; } // New phone number property
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -153,7 +154,7 @@ namespace Library.Web.Areas.Identity.Pages.Account
 
                     string role = HttpContext.Request.Form["RadioRole"].ToString();
 
-                    if(String.IsNullOrEmpty(role))
+                    if (String.IsNullOrEmpty(role))
                     {
                         await _userManager.AddToRoleAsync(user, StaticData.MemberRole);
                         // to make the customer login after registration
@@ -164,7 +165,7 @@ namespace Library.Web.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, role);
                     }
-                    
+
                     return RedirectToAction("Index", "Users", new { area = StaticData.LibrarianRole });
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -184,7 +185,6 @@ namespace Library.Web.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        
                     }
                 }
                 foreach (var error in result.Errors)

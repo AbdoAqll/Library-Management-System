@@ -17,7 +17,9 @@ namespace Library.DataAccess.RepositoryImplementation
 
         public IApplicationUserRepository ApplicationUserRepository { get; private set; }
 
-        public ICheckoutRepository CheckoutRepository{ get; private set; }
+        public ICheckoutRepository CheckoutRepository { get; private set; }
+
+        public IReturnRepository ReturnRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
@@ -25,9 +27,8 @@ namespace Library.DataAccess.RepositoryImplementation
             this.BookRepository = new BookRepository(context);
             this.ApplicationUserRepository = new ApplicationUserRepository(context, userManager);
             this.CheckoutRepository = new CheckoutRepository(context);
+            this.ReturnRepository = new ReturnRepository(context);
         }
-
-        
 
         public async Task<int> CompleteAsync()
         {

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Checkout>
+
+@{
+    ViewData["Title"] = "Returns";
+    ViewData["Card Title"] = "Returns";
+}
+
+<div class="container mt-5 text-center">
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            <strong>Nothing to Be Returned</strong>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mb-4">
+            <div class="p-3 bg-light border rounded shadow-sm">
+                <h2 class="mb-1 fs-7 fw-bold text-black-50"> Books To Be Returned </h2>
+            </div>
+        </div>
+        <table class="table table-bordered table-hover w-100 mx-auto">
+
+            <thead class="table-light">
+                <tr>
+                    <th>NO.</th>
+                    <th>Member</th>
+                    <th>Title</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int counter = 1;
+                }
+
+                @foreach (var c in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td>@c.ApplicationUser.Email</td>
+                        <td>@c.Book.Title</td>
+                        <td>@c.Book.Stock</td>
+                        <td>
+                            <a class="btn btn-success btn-sm me-2" asp-area="Librarian" asp-controller="Return" asp-action="ReturnBook" asp-route-id="@c.Id">Return</a>
+                        </td>
+                    </tr>
+                    counter++;
+                }
+            </tbody>
+        </table>
+    }
+
+</div>

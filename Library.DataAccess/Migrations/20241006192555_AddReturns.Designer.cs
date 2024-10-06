@@ -4,6 +4,7 @@ using Library.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241006192555_AddReturns")]
+    partial class AddReturns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,7 +110,11 @@ namespace Library.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CheckoutId")
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("BookId")
                         .HasColumnType("int");
 
                     b.Property<bool>("HasPenalty")
@@ -118,7 +125,9 @@ namespace Library.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CheckoutId");
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("BookId");
 
                     b.ToTable("Returns");
                 });
@@ -370,13 +379,21 @@ namespace Library.DataAccess.Migrations
 
             modelBuilder.Entity("Library.Entities.Models.Return", b =>
                 {
-                    b.HasOne("Library.Entities.Models.Checkout", "CheckOut")
+                    b.HasOne("Library.Entities.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("CheckoutId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CheckOut");
+                    b.HasOne("Library.Entities.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

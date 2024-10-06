@@ -4,6 +4,7 @@ using Library.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241005203222_test12")]
+    partial class test12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,30 +100,6 @@ namespace Library.DataAccess.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("Checkouts");
-                });
-
-            modelBuilder.Entity("Library.Entities.Models.Return", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CheckoutId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("HasPenalty")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CheckoutId");
-
-                    b.ToTable("Returns");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -366,17 +345,6 @@ namespace Library.DataAccess.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Book");
-                });
-
-            modelBuilder.Entity("Library.Entities.Models.Return", b =>
-                {
-                    b.HasOne("Library.Entities.Models.Checkout", "CheckOut")
-                        .WithMany()
-                        .HasForeignKey("CheckoutId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CheckOut");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

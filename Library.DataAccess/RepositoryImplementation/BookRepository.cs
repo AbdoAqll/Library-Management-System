@@ -13,6 +13,7 @@ namespace Library.DataAccess.RepositoryImplementation
     public class BookRepository : GenericRepository<Book>, IBookRepository
     {
         private readonly ApplicationDbContext context;
+
         public BookRepository(ApplicationDbContext context) : base(context)
         {
             this.context = context;
@@ -33,7 +34,6 @@ namespace Library.DataAccess.RepositoryImplementation
                              x.Description.ToLower().Contains(searchString))
                 .ToListAsync();
         }
-
 
         public Task UpdateAsync(Book book)
         {
