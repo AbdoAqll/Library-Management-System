@@ -1,10 +1,4 @@
-﻿@model Penalty
-@{
-    ViewData["Title"] = "Returns";
-    ViewData["Card Title"] = "Returns";
-}
-
-<!-- Main Content Section Replacing RenderBody -->
+﻿<!-- Main Content Section Replacing RenderBody -->
 <div class="container mt-4">
     <!-- Penalty Details Card -->
     <div class="card">
@@ -14,17 +8,26 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <strong>Due Date:</strong>@Model.Return.CheckOut.DueDate
+                    <strong>Due Date:</strong> @Model.Return.CheckOut.DueDate
+                </div>
                 <div class="col-md-4">
                     <strong>Checkout Date:</strong> @Model.Return.CheckOut.CheckoutDate
+                </div>
                 <div class="col-md-4">
                     <strong>Username:</strong> @Model.Return.CheckOut.ApplicationUser.Name
                 </div>
-                 <div class="col-md-4">
-                <strong>PenaltyAmount:</strong> @Model.Amount
+                <div class="col-md-4">
+                    <strong>Penalty Amount:</strong> @Model.Amount
                 </div>
             </div>
         </div>
+
+        <!-- Button Section -->
+        <div class="card-footer text-center">
+            <!-- Button to go back to Index page -->
+
+
+            <a asp-area="Librarian" asp-controller = "Penalty" asp-action="Index" class="btn btn-secondary mt-2">Back to Index</a>
         </div>
     </div>
 </div>

@@ -32,5 +32,18 @@ namespace Library.DataAccess.RepositoryImplementation
 
             return await query.ToListAsync();
         }
+
+        public async Task<Penalty> GetFirstPenalty(int id)
+        {
+            var query = context.Penalties.Where(x => x.Id == id)
+               .Include(p => p.Return)
+                   .ThenInclude(r => r.CheckOut)
+                       .ThenInclude(c => c.Book)
+               .Include(p => p.Return)
+                   .ThenInclude(r => r.CheckOut)
+                       .ThenInclude(c => c.ApplicationUser);
+
+            return (await query.FirstOrDefaultAsync())!;
+        }
     }
 }

@@ -39,6 +39,11 @@ namespace Library.Web.Areas.Librarian.Controllers
                 ReturnDate = DateTime.Now,
                 HasPenalty = DateTime.Now > checkout.DueDate,
             };
+            book.Stock++;
+            checkout.Status = StaticData.Returned;
+            await unitOfWork.ReturnRepository.AddAsync(ret);
+            await unitOfWork.CompleteAsync();
+            TempData["Success"] = "Book Returned";
             if (ret.HasPenalty)
             {
                 var daysDiff = (ret.ReturnDate - checkout.DueDate)?.Days;
@@ -52,11 +57,6 @@ namespace Library.Web.Areas.Librarian.Controllers
                 await unitOfWork.CompleteAsync();
                 return View("BookPenalty", pen);
             }
-            book.Stock++;
-            checkout.Status = StaticData.Returned;
-            await unitOfWork.ReturnRepository.AddAsync(ret);
-            await unitOfWork.CompleteAsync();
-            TempData["Success"] = "Book Returned";
             return RedirectToAction("Index");
         }
     }

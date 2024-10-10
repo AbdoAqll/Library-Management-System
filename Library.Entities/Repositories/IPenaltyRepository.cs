@@ -10,5 +10,7 @@ namespace Library.Entities.Repositories
     public interface IPenaltyRepository : IGenericRepository<Penalty>
     {
         public Task<IEnumerable<Penalty>> GetAllPenalties();
+
+        public Task<Penalty> GetFirstPenalty(int id);
     }
 }
