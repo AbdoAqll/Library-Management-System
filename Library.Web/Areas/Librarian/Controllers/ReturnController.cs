@@ -39,6 +39,19 @@ namespace Library.Web.Areas.Librarian.Controllers
                 ReturnDate = DateTime.Now,
                 HasPenalty = DateTime.Now > checkout.DueDate,
             };
+            if (ret.HasPenalty)
+            {
+                var daysDiff = (ret.ReturnDate - checkout.DueDate)?.Days;
+
+                var pen = new Penalty()
+                {
+                    Amount = ((decimal)daysDiff!) * StaticData.PenaltyPerDay,
+                    Return = ret,
+                };
+                await unitOfWork.PenaltyRepository.AddAsync(pen);
+                await unitOfWork.CompleteAsync();
+                return View("BookPenalty", pen);
+            }
             book.Stock++;
             checkout.Status = StaticData.Returned;
             await unitOfWork.ReturnRepository.AddAsync(ret);

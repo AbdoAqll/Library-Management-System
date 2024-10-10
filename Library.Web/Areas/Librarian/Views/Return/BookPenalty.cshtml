@@ -1,0 +1,30 @@
+﻿@model Penalty
+@{
+    ViewData["Title"] = "Returns";
+    ViewData["Card Title"] = "Returns";
+}
+
+<!-- Main Content Section Replacing RenderBody -->
+<div class="container mt-4">
+    <!-- Penalty Details Card -->
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            Penalty Details for Return ID: 1234 <!-- Example Return ID -->
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Due Date:</strong>@Model.Return.CheckOut.DueDate
+                <div class="col-md-4">
+                    <strong>Checkout Date:</strong> @Model.Return.CheckOut.CheckoutDate
+                <div class="col-md-4">
+                    <strong>Username:</strong> @Model.Return.CheckOut.ApplicationUser.Name
+                </div>
+                 <div class="col-md-4">
+                <strong>PenaltyAmount:</strong> @Model.Amount
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

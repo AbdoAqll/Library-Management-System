@@ -11,10 +11,13 @@ namespace Library.Entities.Models
     public class Checkout
     {
         public int Id { get; set; }
+
         [Required]
         [ForeignKey("Book")]
         public int BookId { get; set; }
+
         public Book Book { get; set; }
+
         [Required]
         [ForeignKey("ApplicationUser")]
         public string ApplicationUserId { get; set; }
@@ -24,7 +27,5 @@ namespace Library.Entities.Models
         public DateTime? DueDate { get; set; }
 
         public string Status { get; set; }
-
-
     }
 }

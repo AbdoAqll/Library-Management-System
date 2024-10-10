@@ -16,7 +16,6 @@ namespace Library_Utilities
         public const string ApprovedByAdmin = "Borrowing request approved";
         public const string DisaprrovedByAdmin = "Borrowing request disapproved";
         public const string Returned = "Book returned";
-
-
+        public const decimal PenaltyPerDay = 5;
     }
 }

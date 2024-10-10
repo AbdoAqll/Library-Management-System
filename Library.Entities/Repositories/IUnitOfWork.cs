@@ -14,5 +14,6 @@ namespace Library.Entities.Repositories
         IApplicationUserRepository ApplicationUserRepository { get; }
         ICheckoutRepository CheckoutRepository { get; }
         IReturnRepository ReturnRepository { get; }
+        IPenaltyRepository PenaltyRepository { get; }
     }
 }

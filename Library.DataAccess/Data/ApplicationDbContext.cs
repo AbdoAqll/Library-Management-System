@@ -20,5 +20,6 @@ namespace Library.DataAccess.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Checkout> Checkouts { get; set; }
         public DbSet<Return> Returns { get; set; }
+        public DbSet<Penalty> Penalties { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Penalty>
+
+@{
+    ViewData["Title"] = "Penalty List";
+    ViewData["Card Title"] = "Penalty List";
+}
+
+<div class="container mt-5">
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning" role="alert">
+            No Penalties available in the library at this time.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>BookTitle</th>
+                    <th>UserName</th>
+                    <th>DueDate</th>
+                    <th>ReturnDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Pen in Model)
+                {
+                    <tr>
+                        <td>@Pen.Return.CheckOut.Book.Title</td>
+                        <td>@Pen.Return.CheckOut.ApplicationUser.Name</td>
+                        <td>@Pen.Return.CheckOut.DueDate</td>
+                        <td>@Pen.Return.ReturnDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

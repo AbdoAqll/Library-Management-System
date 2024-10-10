@@ -20,6 +20,7 @@ namespace Library.DataAccess.RepositoryImplementation
         public ICheckoutRepository CheckoutRepository { get; private set; }
 
         public IReturnRepository ReturnRepository { get; private set; }
+        public IPenaltyRepository PenaltyRepository { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
@@ -28,6 +29,7 @@ namespace Library.DataAccess.RepositoryImplementation
             this.ApplicationUserRepository = new ApplicationUserRepository(context, userManager);
             this.CheckoutRepository = new CheckoutRepository(context);
             this.ReturnRepository = new ReturnRepository(context);
+            this.PenaltyRepository = new PenaltyRepository(context);
         }
 
         public async Task<int> CompleteAsync()
