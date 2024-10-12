@@ -28,7 +28,7 @@ namespace Library.Web.Areas.Librarian.Controllers
             return View(ApprovedByAdminCheckOuts);
         }
 
-        [HttpGet("ReturnBook")]
+        [HttpGet]
         public async Task<IActionResult> ReturnBook(int id)
         {
             var checkout = await unitOfWork.CheckoutRepository.GetFirstOrDefaultAsync(x => x.Id == id, "Book,ApplicationUser");

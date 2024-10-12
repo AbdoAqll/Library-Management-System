@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="top-nav navbar navbar-expand-lg" style="border-bottom-left-radius: 40px; border-bottom-right-radius:40px; height:80px;background-color:rgb(18, 153, 181);box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3)">
+    <nav class="top-nav navbar navbar-expand-lg" style="border-bottom-left-radius: 20px; border-bottom-right-radius:20px; height:80px;background-color:#343a40;box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3)">
         <div class="container-fluid">
             <img src="~/images/LibraryLogo.png" alt="Library Logo" class="logo" />
             <a class="navbar-brand" href="#" style="color : floralwhite">Library Management System</a>
@@ -23,10 +23,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="Index">
+                            <i class="fas fa-home"></i> Home
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="About">About</a>
+                        <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="About">
+                            <i class="fas fa-info-circle"></i> About
+                        </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -40,14 +44,17 @@
                         <a class="nav-link" href="@Url.Action("Logout", "Account")">Logout</a>
                     </li> *@
                     @* <partial name="_LoginPartial" /> *@
-                    @if(User.Identity.IsAuthenticated){
-                        var user = await UserManager.FindByNameAsync(User.Identity.Name);
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @* var user = await UserManager.FindByNameAsync(User.Identity.Name);
                         <li class="nav-item">
                             <span class="nav-link" style="color:gold">Hello, @user.Name.Split(' ')[0]</span>
-                        </li>
+                        </li> *@
                         <li class="nav-item">
                             <form asp-area="Identity" asp-page="/Account/Logout" method="post" class="d-inline">
-                                <button type="submit" class="nav-link btn btn-link">Logout</button>
+                                <button type="submit" class="nav-link btn btn-link">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
                             </form>
                         </li>
 
@@ -55,35 +62,36 @@
                         {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="librarianDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                                    Options
+                                    <i class="fas fa-cog"></i> Options
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="librarianDropdown" style="margin: 0 0 0 -70px;">
-                                    <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage">Manage Account</a></li>
-                                    <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Register">Create Admin</a></li>
-                                    <li><a class="dropdown-item" asp-area="Librarian" asp-controller="Home" asp-action="Index">Dashboard</a></li>
+                                    <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage"><i class="fas fa-user-cog"></i> Manage Account</a></li>
+                                    <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Register"><i class="fas fa-user-plus"></i> Create Admin</a></li>
+                                    <li><a class="dropdown-item" asp-area="Librarian" asp-controller="Home" asp-action="Index"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                                 </ul>
                             </li>
                         }
                         @if (User.IsInRole(StaticData.MemberRole))
                         {
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="librarianDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Options
+                                <a class="nav-link dropdown-toggle" href="#" id="memberDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-cog"></i> Options
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="librarianDropdown" style="margin: 0 0 0 -70px;">
-                                    <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage">Manage Account</a></li>
-                                    @* <li><a class="dropdown-item" asp-area="Member" asp-controller="Home" asp-action="ViewCheckouts">View Checkouts</a></li> *@
-                                    <li><a class="dropdown-item" asp-area="Member" asp-controller="Borrow" asp-action="Index">Borrowning List</a></li>
-                                    <li><a class="dropdown-item" asp-area="Member" asp-controller="Checkout" asp-action="Index">Checkouts</a></li>
+                                <ul class="dropdown-menu" aria-labelledby="memberDropdown" style="margin: 0 0 0 -70px;">
+                                    <li><a class="dropdown-item" asp-area="Identity" asp-controller="Account" asp-action="Manage"><i class="fas fa-user-cog"></i> Manage Account</a></li>
+                                    <li><a class="dropdown-item" asp-area="Member" asp-controller="Borrow" asp-action="Index"><i class="fas fa-list"></i> Borrowing List</a></li>
+                                    <li><a class="dropdown-item" asp-area="Member" asp-controller="Checkout" asp-action="Index"><i class="fas fa-shopping-cart"></i> Checkouts</a></li>
                                 </ul>
                             </li>
                         }
-                    }else{
+                    }
+                    else
+                    {
                         <li class="nav-item">
-                            <a class="nav-link" href="/Identity/Account/Login">Login</a>
+                            <a class="nav-link" href="/Identity/Account/Login"><i class="fas fa-sign-in-alt"></i> Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Identity/Account/Register">Register</a>
+                            <a class="nav-link" href="/Identity/Account/Register"><i class="fas fa-user-plus"></i> Register</a>
                         </li>
                     }
                 </ul>

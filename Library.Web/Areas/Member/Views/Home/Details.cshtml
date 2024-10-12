@@ -5,8 +5,8 @@
 }
 
 <div class="container mt-5" style="border-radius: 30px;" />
-<div class="card mb-3" style="max-width: max-content;border-radius: 30px">
-    <div class="badge badge-info" style="position: absolute; top: 15px; right: 15px; color: white; font-weight: bold; border-radius: 30px; padding: 10px 20px; font-size: 1.5rem; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+<div class="card mb-3" style="max-width: max-content;border-radius: 30px;">
+    <div class="badge badge-info" style="position: absolute; top: 15px; right: 15px; color: white;background-color: #343a40; font-weight: bold; border-radius: 30px; padding: 10px 20px; font-size: 1.5rem; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         @Model.Stock
         <span style="font-size: 1.2rem;">in stock</span>
     </div>
@@ -22,27 +22,27 @@
                 <div style="margin: 50px 0;"></div>
                 <div class="card-text" style="font-size: 1.4rem;">
                     <p class="mb-2">
-                        <i class="fas fa-font" style="color: darkcyan;"></i>
+                        <i class="fas fa-font" style="color: #343a40;"></i>
                         <strong>Title:</strong> @Model.Title
                     </p>
                     <hr style="border-color: #ccc;">
                     <p class="mb-2">
-                        <i class="fas fa-user" style="color: darkcyan;"></i>
+                        <i class="fas fa-user" style="color: #343a40;"></i>
                         <strong>Author:</strong> @Model.Author
                     </p>
                     <hr style="border-color: #ccc;">
                     <p class="mb-2">
-                        <i class="fas fa-book" style="color: darkcyan;"></i>
+                        <i class="fas fa-book" style="color: #343a40;"></i>
                         <strong>Genre:</strong> @Model.Genre
                     </p>
                     <hr style="border-color: #ccc;">
                     <p class="mb-2">
-                        <i class="fas fa-building" style="color: darkcyan;"></i>
+                        <i class="fas fa-building" style="color: #343a40;"></i>
                         <strong>Publisher:</strong> @Model.Publisher
                     </p>
                     <hr style="border-color: #ccc;">
                     <p class="mb-2">
-                        <i class="fas fa-calendar-alt" style="color: darkcyan;"></i>
+                        <i class="fas fa-calendar-alt" style="color: #343a40;"></i>
                         <strong>Publish Date:</strong> @Model.PublishDate.ToShortDateString()
                     </p>
                     <hr style="visibility:hidden">
@@ -55,11 +55,11 @@
                 </div>
             </div>
         </div>
-        <div style="position: relative;">
-            <a asp-area="Member" asp-controller="Home" asp-action="Index" class="btn btn-info" style="position: absolute; bottom: 15px; right: 15px; border: none; color: white; padding: 12px 20px; font-size: 1.25rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; text-transform: uppercase;">
-                <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back to Books
+        @* <div style="position: relative;">
+            <a href="@Url.Action("Index", "Home")" class="btn" style="position: absolute; bottom: 15px; right: 1px; background-color: rgb(255, 200, 1); color: white; padding: 12px 20px; font-size: 1.25rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; text-transform: uppercase; border: none;">
+                <i class="fas fa-arrow-left" style="color: white;"></i> Back to Books
             </a>
-        </div>
+        </div> *@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     </div>
 </div>

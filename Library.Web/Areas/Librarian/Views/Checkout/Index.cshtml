@@ -10,17 +10,17 @@
     @if (!Model.Any())
     {
         <div class="alert alert-warning" role="alert">
-            <strong>No Checkouts Requests</strong>
+            <strong>No Checkout Requests</strong>
         </div>
     }
     else
     {
         <div class="text-center mb-4">
             <div class="p-3 bg-light border rounded shadow-sm">
-                <h2 class="mb-1 fs-7 fw-bold text-black-50"> Checkout Requests </h2>
+                <h2 class="mb-1 fs-7 fw-bold text-black-50">Checkout Requests</h2>
             </div>
         </div>
-        <table class="table table-bordered table-hover w-100 mx-auto">
+        <table class="table table-striped">
 
             <thead class="table-light">
                 <tr>
@@ -42,8 +42,8 @@
                         <td>@c.Book.Title</td>
                         <td>@c.Book.Stock</td>
                         <td>
-                            <a class="btn btn-success btn-sm me-2" asp-area="Librarian" asp-controller="Checkout" asp-action="Approve" asp-route-id="@c.Id">Approve</a>
-                            <a class="btn btn-danger btn-sm me-2" asp-area="Librarian" asp-controller="Checkout" asp-action="Disapprove" asp-route-id="@c.Id">Disapprove</a>
+                            <a class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#approveModal" data-id="@c.Id">Approve</a>
+                            <a class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="#disapproveModal" data-id="@c.Id">Disapprove</a>
                         </td>
                     </tr>
                     counter++;
@@ -53,3 +53,72 @@
     }
 
 </div>
+
+<!-- Approve Confirmation Modal -->
+<div class="modal fade" id="approveModal" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="approveModalLabel">Confirm Approval</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to approve this checkout request?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="confirmApproveButton">Approve</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Disapprove Confirmation Modal -->
+<div class="modal fade" id="disapproveModal" tabindex="-1" aria-labelledby="disapproveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="disapproveModalLabel">Confirm Disapproval</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to disapprove this checkout request?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDisapproveButton">Disapprove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to handle the approvals and disapprovals
+    document.addEventListener('DOMContentLoaded', function () {
+        var approveButton = document.getElementById('confirmApproveButton');
+        var disapproveButton = document.getElementById('confirmDisapproveButton');
+        var itemId;
+
+        document.querySelectorAll('a[data-bs-target="#approveModal"]').forEach(function (element) {
+            element.addEventListener('click', function () {
+                itemId = this.getAttribute('data-id');
+            });
+        });
+
+        document.querySelectorAll('a[data-bs-target="#disapproveModal"]').forEach(function (element) {
+            element.addEventListener('click', function () {
+                itemId = this.getAttribute('data-id');
+            });
+        });
+
+        approveButton.addEventListener('click', function () {
+            // Redirect to the approve action with the itemId
+            window.location.href = '/Librarian/Checkout/Approve/' + itemId; // Adjust the URL as necessary
+        });
+
+        disapproveButton.addEventListener('click', function () {
+            // Redirect to the disapprove action with the itemId
+            window.location.href = '/Librarian/Checkout/Disapprove/' + itemId; // Adjust the URL as necessary
+        });
+    });
+</script>

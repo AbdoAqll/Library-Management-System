@@ -9,26 +9,35 @@
 <div class="container">
     <form method="get" asp-area="Member" asp-controller="Home" asp-action="Search" class="input-group my-3 search-bar">
         <input type="text" name="searchString" class="form-control" placeholder="Search books..." aria-label="Search">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
+        <button class="btn" type="submit" style="background-color: rgb(255, 200, 1); color: #343a40;">
+            <i class="fas fa-search" style="color:#343a40"></i> Search
+        </button>
     </form>
 </div>
+
 
 <div class="container mt-4">
     <div class="row">
         @foreach (var book in Model)
         {
-            @if(book.Stock == 0){ continue; }
+            @if (book.Stock == 0) { continue; }
             <div class="col-lg-3 col-md-4 col-sm-6 book-card">
                 <div class="card">
-                    <img src="@book.ImageUrl" class="card-img-top" alt="@book.Title">
+                    <a asp-area="Member" asp-controller="Home" asp-action="Details" asp-route-id="@book.Id">
+                        <img src="@book.ImageUrl" class="card-img-top" alt="@book.Title">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">@book.Title</h5>
-                        <p class="card-text"><span class="genre-label">Genre:</span> @book.Genre</p>
-                        <a asp-area="Member" asp-controller="Home" asp-action="Details" asp-route-id="@book.Id" class="btn btn-info text-white mt-2">Details</a>
-                        <a asp-area="Member" asp-controller="Borrow" asp-action="Borrow" asp-route-id="@book.Id" class="btn btn-info text-white mt-2">Borrow</a>
+                        <p class="card-text" style="font-size: 0.85rem;"><span class="genre-label">Author:</span> @book.Author</p>
+                        <hr />
+                        <a asp-area="Member" asp-controller="Borrow" asp-action="Borrow" asp-route-id="@book.Id" class="btn" style="background-color: rgb(255, 200, 1); color: black; width: 100%;">
+                            <i class="fas fa-book-reader"></i> Borrow
+                        </a>
                     </div>
                 </div>
             </div>
         }
     </div>
 </div>
+
+

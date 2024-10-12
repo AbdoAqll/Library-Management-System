@@ -6,7 +6,7 @@ body {
 }
 
 #sidebar {
-    background-color: #00183a; /* Updated color */
+    background-color: #343a40; /* Updated color */
     color: white;
     height: 100%; /* Full height */
     position: fixed; /* Fix to the left */
@@ -19,7 +19,7 @@ body {
     }
 
         #sidebar a:hover {
-            background-color: #00355b; /* Lightened shade for hover */
+            background-color: #4b545a; /* Lightened shade for hover */
             color: #ffffff;
         }
     #sidebar button.nav-link {
@@ -31,7 +31,7 @@ body {
         width: 100%; /* Full width */
     }
     #sidebar button:hover {
-        background-color: #00355b; /* Lightened shade for hover */
+        background-color: #4b545a; /* Lightened shade for hover */
     }
 
 main {

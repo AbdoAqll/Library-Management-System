@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Returns";
-    ViewData["Card Title"] = "Returns";
 }
 
 <div class="container mt-5 text-center">
@@ -17,10 +16,10 @@
     {
         <div class="text-center mb-4">
             <div class="p-3 bg-light border rounded shadow-sm">
-                <h2 class="mb-1 fs-7 fw-bold text-black-50"> Books To Be Returned </h2>
+                <h2 class="mb-1 fs-7 fw-bold text-black-50">Books To Be Returned</h2>
             </div>
         </div>
-        <table class="table table-bordered table-hover w-100 mx-auto">
+        <table class="table table-striped">
 
             <thead class="table-light">
                 <tr>
@@ -40,11 +39,11 @@
                 {
                     <tr>
                         <td>@counter</td>
-                        <td>@c.ApplicationUser.Email</td>
+                        <td>@c.ApplicationUser.Name</td>
                         <td>@c.Book.Title</td>
                         <td>@c.Book.Stock</td>
                         <td>
-                            <a class="btn btn-success btn-sm me-2" asp-area="Librarian" asp-controller="Return" asp-action="ReturnBook" asp-route-id="@c.Id">Return</a>
+                            <a class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#returnModal" data-id="@c.Id">Return</a>
                         </td>
                     </tr>
                     counter++;
@@ -54,3 +53,41 @@
     }
 
 </div>
+
+<!-- Return Confirmation Modal -->
+<div class="modal fade" id="returnModal" tabindex="-1" aria-labelledby="returnModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="returnModalLabel">Confirm Return</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to return this book?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="confirmReturnButton">Return</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to handle the return confirmation
+    document.addEventListener('DOMContentLoaded', function () {
+        var returnButton = document.getElementById('confirmReturnButton');
+        var itemId;
+
+        document.querySelectorAll('a[data-bs-target="#returnModal"]').forEach(function (element) {
+            element.addEventListener('click', function () {
+                itemId = this.getAttribute('data-id');
+            });
+        });
+
+        returnButton.addEventListener('click', function () {
+            // Redirect to the return action with the itemId
+            window.location.href = '/Librarian/Return/ReturnBook/' + itemId; // Adjust the URL as necessary
+        });
+    });
+</script>
