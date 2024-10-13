@@ -3,6 +3,7 @@ using Library.Entities.Repositories;
 using Library_Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Library.Web.Areas.Librarian.Controllers
 {
@@ -58,6 +59,25 @@ namespace Library.Web.Areas.Librarian.Controllers
                 return View("BookPenalty", pen);
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string? username)
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrEmpty(username))
+            {
+                TempData["Delete"] = "Empty Input!";
+                return RedirectToAction("Index");
+            }
+            var checkouts = await unitOfWork.ReturnRepository.GetAllReturnsFilterdByUsernnameAsync(username);
+
+            if (checkouts.IsNullOrEmpty())
+            {
+                TempData["Delete"] = "Not Found!";
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index", checkouts);
         }
     }
 }

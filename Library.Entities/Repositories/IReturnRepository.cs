@@ -9,5 +9,7 @@ namespace Library.Entities.Repositories
 {
     public interface IReturnRepository : IGenericRepository<Return>
     {
+        public Task<IEnumerable<Return>> GetAllReturnsFilterdByUsernnameAsync(string username);
+
     }
 }
