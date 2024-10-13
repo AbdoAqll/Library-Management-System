@@ -1,5 +1,15 @@
-﻿<div class="container mt-5">
-    <h2 style="color: #343a40;">User Capabilities</h2>
+﻿@{
+    // ViewData["Title"] = "About";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Library Management System</h1>
+    <p class="lead">Your all-in-one solution for managing library operations!</p>
+</div>
+
+<div class="container mt-5">
+    <h2 style="color: #343a40;">Reader Capabilities</h2>
+    <hr />
     <div class="row">
 
         <div class="col-md-4 d-flex">
@@ -28,6 +38,15 @@
                     <i class="fas fa-history fa-3x mb-3" style="color: rgb(255, 200, 1);"></i>
                     <h5 class="card-title">View Your Checkouts</h5>
                     <p class="card-text">Keep track of your current and past checkouts. Easily see due dates and the status of borrowed items to manage your returns effectively.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex">
+            <div class="card flex-fill text-center shadow-lg" style="border-radius: 15px; margin-top:30px">
+                <div class="card-body">
+                    <i class="fas fa-list-alt fa-3x mb-3" style="color: rgb(255, 200, 1);"></i>
+                    <h5 class="card-title">View Your Current Borrowing List</h5>
+                    <p class="card-text">View a comprehensive list of all books you have currently borrowed, with options to accept or decline the borrowing process for each book in your borrowing list.</p>
                 </div>
             </div>
         </div>
