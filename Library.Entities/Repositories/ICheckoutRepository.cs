@@ -10,5 +10,6 @@ namespace Library.Entities.Repositories
 {
     public interface ICheckoutRepository : IGenericRepository<Checkout>
     {
+        public Task<IEnumerable<Checkout>> GetAllCheckoutsFilterdByUsernnameAsync(string username);
     }
 }

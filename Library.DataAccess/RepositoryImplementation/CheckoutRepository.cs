@@ -1,6 +1,7 @@
 ﻿using Library.DataAccess.Data;
 using Library.Entities.Models;
 using Library.Entities.Repositories;
+using Library_Utilities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,13 @@ namespace Library.DataAccess.RepositoryImplementation
         public CheckoutRepository(ApplicationDbContext context) : base(context)
         {
             this.context = context;
+        }
+
+        public async Task<IEnumerable<Checkout>> GetAllCheckoutsFilterdByUsernnameAsync(string username)
+        {
+            return await context.Checkouts.Include(c => c.ApplicationUser)
+                .Where(c => c.ApplicationUser.Name.ToLower().Contains(username) && c.Status == StaticData.ConfirmedByUser)
+                .ToListAsync(); 
         }
     }
 }

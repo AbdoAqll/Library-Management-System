@@ -4,6 +4,7 @@ using Library_Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Library.Web.Areas.Librarian.Controllers
 {
@@ -21,7 +22,7 @@ namespace Library.Web.Areas.Librarian.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var confirmedByUserCheckouts = await unitOfWork.CheckoutRepository.GetAllAsync(c => c.Status == StaticData.ConfirmedByUser,"Book");
+            var confirmedByUserCheckouts = await unitOfWork.CheckoutRepository.GetAllAsync(c => c.Status == StaticData.ConfirmedByUser,"Book,ApplicationUser");
             return View(confirmedByUserCheckouts);
         }
         [HttpGet]
@@ -60,6 +61,25 @@ namespace Library.Web.Areas.Librarian.Controllers
 
 
             return RedirectToAction("Index");
+        } 
+        
+        [HttpGet]
+        public async Task<IActionResult> Search(string? username)
+        {
+            if(string.IsNullOrWhiteSpace(username) || string.IsNullOrEmpty(username))
+            {
+                TempData["Delete"] = "Empty Input!";
+                return RedirectToAction("Index");
+            }
+            var checkouts = await unitOfWork.CheckoutRepository.GetAllCheckoutsFilterdByUsernnameAsync(username);
+
+            if (checkouts.IsNullOrEmpty())
+            {
+                TempData["Delete"] = "Not Found!";
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index", checkouts);
         }
     }
 }
