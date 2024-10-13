@@ -33,6 +33,20 @@ namespace Library.DataAccess.RepositoryImplementation
             return await query.ToListAsync();
         }
 
+        public async Task<IEnumerable<Penalty>> GetAllPenaltiesFilterdByUsernnameAsync(string username)
+        {
+            IQueryable<Penalty> query = context.Penalties
+                     .Include(p => p.Return)
+                         .ThenInclude(r => r.CheckOut)
+                             .ThenInclude(c => c.Book)
+                     .Include(p => p.Return)
+                         .ThenInclude(r => r.CheckOut)
+                             .ThenInclude(c => c.ApplicationUser)
+                      .Where(p=> p.Return.CheckOut.ApplicationUser.Name.ToLower().Contains(username));
+       
+            return await query.ToListAsync();
+        }
+
         public async Task<Penalty> GetFirstPenalty(int id)
         {
             var query = context.Penalties.Where(x => x.Id == id)

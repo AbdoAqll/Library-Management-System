@@ -3,6 +3,7 @@ using Library.Entities.Repositories;
 using Library_Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Library.Web.Areas.Librarian.Controllers
 {
@@ -21,6 +22,25 @@ namespace Library.Web.Areas.Librarian.Controllers
         {
             var allPenalties = await unitOfWork.PenaltyRepository.GetAllPenalties();
             return View(allPenalties);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string? username)
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrEmpty(username))
+            {
+                TempData["Delete"] = "Empty Input!";
+                return RedirectToAction("Index");
+            }
+            var penalties = await unitOfWork.PenaltyRepository.GetAllPenaltiesFilterdByUsernnameAsync(username);
+
+            if (penalties.IsNullOrEmpty())
+            {
+                TempData["Delete"] = "Not Found!";
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index", penalties);
         }
 
         // Obselete

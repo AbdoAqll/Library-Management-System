@@ -12,5 +12,7 @@ namespace Library.Entities.Repositories
         public Task<IEnumerable<Penalty>> GetAllPenalties();
 
         public Task<Penalty> GetFirstPenalty(int id);
+
+        public Task<IEnumerable<Penalty>> GetAllPenaltiesFilterdByUsernnameAsync(string username);
     }
 }

@@ -69,15 +69,15 @@ namespace Library.Web.Areas.Librarian.Controllers
                 TempData["Delete"] = "Empty Input!";
                 return RedirectToAction("Index");
             }
-            var checkouts = await unitOfWork.ReturnRepository.GetAllReturnsFilterdByUsernnameAsync(username);
+            var returns = await unitOfWork.ReturnRepository.GetAllReturnsFilterdByUsernnameAsync(username);
 
-            if (checkouts.IsNullOrEmpty())
+            if (returns.IsNullOrEmpty())
             {
                 TempData["Delete"] = "Not Found!";
                 return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index", checkouts);
+            return RedirectToAction("Index", returns);
         }
     }
 }
