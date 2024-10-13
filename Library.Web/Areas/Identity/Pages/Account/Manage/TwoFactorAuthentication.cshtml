@@ -53,8 +53,10 @@
         }
         else
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary">Set up authenticator app</a>
-            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-primary">Reset authenticator app</a>
+            <div style="display: flex; gap: 10px;">
+                <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn" style="background-color: rgb(255, 200, 1); color: #343a40;">Set up authenticator app</a>
+                <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn" style="background-color: #343a40; color:  rgb(255, 200, 1);">Reset authenticator app</a>
+            </div>
         }
     }
     else

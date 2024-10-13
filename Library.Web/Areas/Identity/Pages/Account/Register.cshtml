@@ -31,7 +31,7 @@
                 <span asp-validation-for="Input.Address" class="text-danger"></span>
             </div>
 
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-3" style="color = #343a40">
                 <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Phone Number" required />
                 <label asp-for="Input.PhoneNumber">Phone Number</label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
@@ -63,17 +63,17 @@
             
             @if (User.IsInRole(StaticData.LibrarianRole))
             {
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Create New User</button>
+                <button id="registerSubmit" type="submit" class="w-100 btn" style="background-color: rgb(255, 200, 1); color = #343a40">Create New User</button>
             }
             else
             {
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                <button id="registerSubmit" type="submit" class="w-100 btn" style="background-color: rgb(255, 200, 1); color = #343a40">Register</button>
             }
         </form>
     </div>
 
     <div class="col-md-6">
-        <img src="~/images/LibraryLogo.jpg" alt="Library Logo" class="img-fluid" style="max-width: 100%; height: auto;"/>
+        <img src="~/images/quote.png" alt="Library Logo" class="img-fluid" style="max-width: 100%; height: auto;"/>
     </div>
 </div>
 
