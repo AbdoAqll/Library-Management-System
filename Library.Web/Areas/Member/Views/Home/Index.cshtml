@@ -40,4 +40,16 @@
     </div>
 </div>
 
+<!-- Pagination -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                <a class="page-link" asp-area="Member" asp-controller="Home" asp-action="Index" asp-route-page="@i" style="background-color: rgb(255, 200, 1); color:black">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
+
 

@@ -4,6 +4,8 @@ using Library_Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.Drawing.Printing;
 
 namespace Library.Web.Areas.Librarian.Controllers
 {
@@ -19,10 +21,16 @@ namespace Library.Web.Areas.Librarian.Controllers
             this.webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var books = await unitOfWork.BookRepository.GetAllAsync();
-            return View(books);
+            var totalBooks = books.Count();
+            var pagedBooks = books.Skip((page - 1) * StaticData.pageSize).Take(StaticData.pageSize).ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = Math.Ceiling((double)totalBooks / StaticData.pageSize);
+
+            return View(pagedBooks);
         }
 
         [HttpGet]
@@ -140,5 +148,26 @@ namespace Library.Web.Areas.Librarian.Controllers
 
             return View(book);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Search(string? searchString)
+        {
+            if (string.IsNullOrWhiteSpace(searchString) || string.IsNullOrEmpty(searchString))
+            {
+                TempData["Delete"] = "Empty Input!";
+                return RedirectToAction("Index");
+            }
+            var books = await unitOfWork.BookRepository.SearchBooksAsync(searchString);
+
+            if (books.IsNullOrEmpty())
+            {
+                TempData["Delete"] = "Not Found!";
+                return RedirectToAction("Index");
+            }
+
+            return View("Index", books);
+        }
+
     }
 }

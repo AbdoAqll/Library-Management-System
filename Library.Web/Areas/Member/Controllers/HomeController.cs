@@ -13,10 +13,16 @@ namespace Library.Web.Areas.Member.Controllers
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var books = await unitOfWork.BookRepository.GetAllAsync();
-            return View(books);
+            var totalBooks = books.Count();
+            var pagedBooks = books.Skip((page - 1) * StaticData.pageSize).Take(StaticData.pageSize).ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = Math.Ceiling((double)totalBooks / StaticData.pageSize);
+
+            return View(pagedBooks);
         }
 
         [HttpGet]
