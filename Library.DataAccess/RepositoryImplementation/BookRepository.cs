@@ -35,11 +35,11 @@ namespace Library.DataAccess.RepositoryImplementation
                 .ToListAsync();
         }
 
-        public Task UpdateAsync(Book book)
-        {
-            dbSet.Attach(book);
-            context.Entry(book).State = EntityState.Modified;
-            return Task.CompletedTask;
-        }
+        //public Task UpdateAsync(Book book)
+        //{
+        //    dbSet.Attach(book);
+        //    context.Entry(book).State = EntityState.Modified;
+        //    return Task.CompletedTask;
+        //}
     }
 }

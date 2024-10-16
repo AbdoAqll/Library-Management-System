@@ -74,5 +74,12 @@ namespace Library.DataAccess.RepositoryImplementation
             dbSet.RemoveRange(entities);
             return Task.CompletedTask;
         }
+
+        public Task UpdateAsync(T entity)
+        {
+            dbSet.Attach(entity);
+            context.Entry(entity).State = EntityState.Modified;
+            return Task.CompletedTask;
+        }
     }
 }

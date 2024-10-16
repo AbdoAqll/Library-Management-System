@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -14,5 +15,6 @@ namespace Library.Entities.Repositories
         Task AddAsync(T entity);
         Task RemoveAsync(T entity);
         Task RemoveRangeAsync(IEnumerable<T> entities);
+        Task UpdateAsync(T entity);
     }
 }
